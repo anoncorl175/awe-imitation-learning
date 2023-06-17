@@ -13,13 +13,11 @@ Behavioral cloning (BC) has achieved impressive robotic results, from self-drivi
 
 ## Automatic Waypoint Extraction (AWE)
 
-We aim to develop an automated method to select waypoints for any given task. The key idea is that if a trajectory is approximately linear, it can be represented just by the endpoints. A low-level controller can reliably move between endpoints without explicitly learning the intermediate actions. If we can approximate arbitrary trajectories as piecewise linear, we can use the endpoints of each linear segment as waypoint. Breaking arbitrary trajectories into waypoints allows us to transform the BC problem from predicting next actions to predicting next waypoints.
-
-<!-- ![A simple dynamic programming algorithm allows us to choose the shortest subsequence of states that approximate the trajectory up to an acceptable reconstruction error .](./img/loss_fn.png "Method") -->
+We aim to develop an automated method to select waypoints for any given task. The key idea is that if a trajectory is approximately linear, it can be represented just by the endpoints. A low-level controller can reliably move between endpoints without explicitly learning the intermediate actions. Extending the argument to arbitrary trajectories, if it can be represented as a composition of linear segments, then, the endpoints of the linear segments are sufficient to represent the trajectory. Breaking arbitrary trajectories into these "waypoints" allows us to transform the BC problem from predicting the next action to predicting the next waypoint.
 
 <div class="w3-row-padding">
     <img style="max-width:40%" src="./img/loss_fn.png">
-    <figcaption class="imgcaption">We select waypoints by using dynamic programming to recursively choose the shortest subsequence of states that approximates the trajectory within an acceptable reconstruction error budget.</figcaption>
+    <figcaption class="imgcaption">A simple dynamic programming algorithm allows us to choose the shortest subsequence of states that approximate the trajectory up to an acceptable reconstruction error .</figcaption>
 </div>
 
 We propose AWE, a preprocessing module that breaks expert demonstrations into waypoints. AWE only uses the robot's proprioception, requiring no additional input or assumptions about the external environment. When plugged into state-of-the-art imitation learning methods, AWE consistently improves performance in both simulated and real-robot tasks.
@@ -51,40 +49,6 @@ AWE achieves substantial success on each task. Plugging our automatic waypoint s
 ## Coffee Making
 
 Placing the coffee pod into the machine requires high precision. It is easy for the gripper or coffee pod to collide with the machine due to the small clearance.
-
-<!-- <table style="width:100%; margin: auto; max-width: 1200px; table-layout: fixed;">
-<tbody>
-  <tr style="border-bottom: none;">
-    <td style="text-align: center">
-        <figcaption class="imgcaption">Success</figcaption>
-    </td>
-  </tr>
-  <tr style="border-bottom: none;">
-    <td style="text-align: center">
-        <video id="round" height="auto" width="95%" controls autoplay loop muted>
-            <source src="video/coffee_success.mp4" type="video/mp4">
-        </video>
-    </td>
-  </tr>
-</tbody>
-</table>
-
-<table style="width:100%; margin: auto; max-width: 1200px; table-layout: fixed;">
-<tbody>
-  <tr style="border-bottom: none;">
-    <td style="text-align: center">
-        <figcaption class="imgcaption">Failure</figcaption>
-    </td>
-  </tr>
-  <tr style="border-bottom: none;">
-    <td style="text-align: center">
-        <video id="round" height="auto" width="95%" controls autoplay loop muted>
-            <source src="video/coffee_failure.mp4" type="video/mp4">
-        </video>
-    </td>
-  </tr>
-</tbody>
-</table> -->
 
 <div class="slideshow-container" id="coffeeGroup">
   <div class="mySlides fade">
