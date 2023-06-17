@@ -17,7 +17,7 @@ We aim to develop an automated method to select waypoints for any given task. Th
 
 <div class="w3-row-padding">
     <img style="max-width:40%" src="./img/loss_fn.png">
-    <figcaption class="imgcaption">A simple dynamic programming algorithm allows us to choose the shortest subsequence of states that approximate the trajectory up to an acceptable reconstruction error .</figcaption>
+    <figcaption class="imgcaption">Measuring the reconstruction error for a given set of waypoints. A simple dynamic programming algorithm can select the shortest subsequence of states that approximate the trajectory up to an acceptable reconstruction error. </figcaption>
 </div>
 
 We propose AWE, a preprocessing module that breaks expert demonstrations into waypoints. AWE only uses the robot's proprioception, requiring no additional input or assumptions about the external environment. When plugged into state-of-the-art imitation learning methods, AWE consistently improves performance in both simulated and real-robot tasks.
